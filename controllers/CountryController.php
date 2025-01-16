@@ -46,6 +46,17 @@ class CountryController extends Controller
             'pageSize' => 10, // Adjust the page size as needed
         ];
 
+        // Add pagination with custom options
+    // $dataProvider->pagination = [
+    //     'pageSize' => 10,
+    //     'pageSizeLimit' => [5, 10, 20], // Allow users to select page size
+    //     'forcePageParam' => 'page', // Customize page parameter
+    //     'prevPageLabel' => '<i class="fas fa-chevron-left"></i>', // Use icons for better UX
+    //     'nextPageLabel' => '<i class="fas fa-chevron-right"></i>',
+    //     'firstPageLabel' => '<i class="fas fa-angle-double-left"></i>',
+    //     'lastPageLabel' => '<i class="fas fa-angle-double-right"></i>',
+    // ];
+
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,

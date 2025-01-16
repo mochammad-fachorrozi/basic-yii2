@@ -132,6 +132,24 @@ class SiteController extends Controller
         return $this->render('say', ['message' => $message]);
     }
 
+    public function actionHello() {
+        return "Hello " . $_GET['nama'];
+    }
+
+    public function actionHay($nama) {
+        return "Hay " . $nama;
+    }
+
+    public function actionUrl() {
+        return $this->render('url');
+    }
+
+    public function actionHyperlink() {
+        return $this->render('hyperlink');
+    }
+
+
+
     public function actionEntry()
     {
         $model = new EntryForm();
@@ -146,5 +164,29 @@ class SiteController extends Controller
             // menampilkan form pada halaman, ada atau tidaknya kegagalan validasi tidak masalah
             return $this->render('entry', ['model' => $model]);
         }
+    }
+
+    public function actionKomentar()
+    {
+        $model = new \app\models\Komentar();
+        
+        // Jika form di-submit dengan method POST
+        if(Yii::$app->request->post()){
+            $model->load(Yii::$app->request->post());
+            if($model->validate()){
+                Yii::$app->session->setFlash('success','Terima kasih ');       
+            }
+            else{
+                Yii::$app->session->setFlash('error','Maaf, salah!');   
+            }
+            return $this->render('hasil_komentar', [
+                'model' => $model,
+            ]); 
+        }
+        else{
+            return $this->render('komentar', [
+                'model' => $model,
+            ]); 
+        }       
     }
 }
